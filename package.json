@@ -1,6 +1,6 @@
 {
   "name": "@sigbit/nuxt-appsignal",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "author": "Jacob Andersson",
   "license": "MIT",
   "main": "src/index.js",

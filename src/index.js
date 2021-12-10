@@ -38,17 +38,18 @@ export default function module (moduleOptions) {
     this.nuxt.hook('render:errorMiddleware', app => app.use(expressErrorHandler(appsignal)));
 
     // SSR plugin
-    this.addPlugin({
-      src: resolve(__dirname, 'plugin.server.js'),
-      fileName: 'nuxt-appsignal.server.js',
-      options: {
-        nodeOptions,
-        javascriptOptions,
-      },
-    });
+    if (javascriptOptions.active)
+      this.addPlugin({
+        src: resolve(__dirname, 'plugin.server.js'),
+        fileName: 'nuxt-appsignal.server.js',
+        options: {
+          nodeOptions,
+          javascriptOptions,
+        },
+      });
   }
 
-  if (javascriptOptions.key)
+  if (javascriptOptions.active && javascriptOptions.key)
     // CSR plugin
     this.addPlugin({
       src: resolve(__dirname, 'plugin.client.js'),
